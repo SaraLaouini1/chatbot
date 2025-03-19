@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { FiSend } from 'react-icons/fi';
-import './Chat.css'; // Create this CSS file
+import './Chat.css';
 
 interface Message {
   text: string;
@@ -63,37 +63,55 @@ export default function Chat() {
     }
   };
 
-  return (
-    <div className="container">
-      <div className="chat-window">
-        <div className="message-container">
-          {messages.map((msg) => (
-            <div 
-              key={msg.id}
-              className={`message ${msg.isUser ? 'user' : 'bot'}`}
-              style={{ whiteSpace: 'pre-line' }}
-            >
-              {msg.text}
-            </div>
-          ))}
-          {loading && <div className="loading">Processing...</div>}
+  // Keep all the existing logic, just update the JSX structure
+return (
+  <div className="chat-container">
+    <h1 className="chat-title">Secure Chat</h1>
+    
+    <div className="chat-messages">
+      {messages.map((msg) => (
+        <div 
+          key={msg.id}
+          className={`message ${msg.isUser ? 'user-message' : 'bot-message'}`}
+        >
+          <div className="message-content">
+            {msg.text}
+          </div>
         </div>
-
-        {error && <div className="error">{error}</div>}
-
-        <form onSubmit={handleSubmit} className="input-area">
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Type your message..."
-            disabled={loading}
-          />
-          <button type="submit" disabled={loading}>
-            <FiSend className="send-icon" />
-          </button>
-        </form>
-      </div>
+      ))}
+      {loading && (
+        <div className="loading-indicator">
+          <div className="spinner"></div>
+          Processing...
+        </div>
+      )}
     </div>
-  );
+
+    {error && (
+      <div className="error-message">
+        ⚠️ {error}
+      </div>
+    )}
+
+    <form onSubmit={handleSubmit} className="chat-input-form">
+      <div className="input-wrapper">
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="Type your message..."
+          disabled={loading}
+          className="chat-input"
+        />
+        <button 
+          type="submit" 
+          disabled={loading}
+          className="send-button"
+        >
+          <FiSend className="send-icon" />
+        </button>
+      </div>
+    </form>
+  </div>
+);
 }
