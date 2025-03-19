@@ -1,12 +1,7 @@
-import Chat from './components/Chat';
-
 function App() {
   return (
-    <div className="App">
-      <h1>Secure Chat</h1>
+    <div className="app-container">
       <Chat />
     </div>
   );
 }
-
-export default App;
