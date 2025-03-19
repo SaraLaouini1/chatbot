@@ -65,9 +65,6 @@ export default function Chat() {
 
   return (
     <div className="chat-container">
-      <header className="chat-header">
-        <h1 className="chat-title">Secure Chat</h1>
-      </header>
 
       <div className="messages-container">
         {messages.map((msg) => (
