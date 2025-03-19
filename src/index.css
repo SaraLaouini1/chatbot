@@ -100,16 +100,18 @@ body {
 }
 
 .chat-input {
-  padding: 1rem 1.5rem;
-  border: 2px solid #e2e8f0;
-  border-radius: 12px;
+  flex: 1;
+  padding: 1rem 1.25rem;
+  border: 3px solid #d1d5db; /* Thicker border */
+  border-radius: 0.75rem; /* More rounded corners */
   font-size: 1rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.2s ease-in-out;
+  margin-right: 0.5rem;
 }
 
 .chat-input:focus {
-  border-color: #818cf8;
-  box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.2);
+  border: 3px solid #6366f1; /* Purple border when focused */
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1); /* Subtle glow effect */
 }
 
 .send-button {
