@@ -100,14 +100,14 @@ body {
 }
 
 .chat-input {
-  border: 3px solid #e5e7eb; /* Increased from 1px to 3px */
+  border: 4px solid #e5e7eb;
   padding: 1rem; /* Optional: adjust padding for better proportions */
   border-radius: 0.5rem; /* Optional: slightly larger border radius */
 }
 
 /* For focused state */
 .chat-input:focus {
-  border: 3px solid #3b82f6; /* Thicker border when focused */
+  border: 4px solid #e5e7eb;
   outline: none; /* Remove default browser outline */
 }
 
