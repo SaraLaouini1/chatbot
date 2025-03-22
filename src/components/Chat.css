@@ -1,3 +1,4 @@
+/* Chat.css */
 
 /* Base Container */
 .chat-container {
@@ -38,10 +39,10 @@
   color: white;
   position: relative;
   overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  display: flex; /* Add this */
+  justify-content: center; /* Add this */
+  align-items: center; /* Add this */
+  text-align: center; /* Add this */
 }
 
 .chat-header::after {
@@ -68,11 +69,12 @@
   position: relative;
   z-index: 1;
   padding: 0.5rem 1rem;
-  background: linear-gradient(45deg, var(--gold-accent), var(--gold-secondary));
+  background: linear-gradient(45deg, var(--gold-accent), #E8D5B5);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  width: 100%;
+  /* Remove display: inline-block */
+  width: 100%; /* Add this */
 }
 
 /* Messages Container */
@@ -108,11 +110,11 @@
 }
 
 .message.user {
-  background: linear-gradient(135deg, var(--gold-accent), var(--gold-secondary));
-  color: var(--text-primary);
+  background: linear-gradient(135deg, var(--accent-color), #3B7BC9);
+  color: white;
   margin-left: auto;
   border-radius: 24px 24px 4px 24px;
-  box-shadow: 0 8px 24px rgba(197, 164, 126, 0.2);
+  box-shadow: 0 8px 24px rgba(74, 144, 226, 0.2);
 }
 
 .message.bot {
@@ -169,16 +171,16 @@
 
 .chat-input:focus {
   outline: none;
-  border-color: var(--gold-accent);
-  box-shadow: 0 0 0 2px rgba(197, 164, 126, 0.1);
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
   background: white;
 }
 
 .send-button {
   padding: 1rem 2rem;
   border-radius: 16px;
-  background: linear-gradient(135deg, var(--gold-accent), var(--gold-secondary));
-  color: var(--text-primary);
+  background: linear-gradient(135deg, var(--accent-color), #3B7BC9);
+  color: white;
   border: none;
   font-weight: 500;
   letter-spacing: 0.04em;
@@ -188,9 +190,8 @@
 }
 
 .send-button:hover {
-  background: linear-gradient(135deg, #B08F68, #D7C1A1);
   transform: translateY(-1px);
-  box-shadow: 0 8px 16px rgba(197, 164, 126, 0.2);
+  box-shadow: 0 8px 16px rgba(74, 144, 226, 0.2);
 }
 
 .send-button::after {
@@ -231,8 +232,8 @@
 .spinner {
   width: 24px;
   height: 24px;
-  border: 3px solid rgba(197, 164, 126, 0.2);
-  border-top-color: var(--gold-accent);
+  border: 3px solid rgba(74, 144, 226, 0.2);
+  border-top-color: var(--accent-color);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
