@@ -108,7 +108,14 @@ export default function Chat() {
 
       <div className="input-container">
         <form onSubmit={handleSubmit} className="input-wrapper">
-          <textarea id="chat-input" placeholder="Type your message..."></textarea>
+          <input
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Type your message..."
+            disabled={loading}
+            className="chat-input"
+          />
 
           <button
             type="submit"
