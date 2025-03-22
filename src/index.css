@@ -101,10 +101,10 @@ body {
 
 
 #chat-input {
-    width: 100%;
+    width: 100px;
     min-height: 40px;
     max-height: 150px;
-    padding: 20px;
+    padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
