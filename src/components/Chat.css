@@ -192,8 +192,11 @@
 }
 
 .send-button:hover {
-  background: #B08F68; /* Darker gold on hover */
-  color: #000;
+  background: var(--gold-accent);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(197, 164, 126, 0.3); /* Gold shadow */
+  #background: #B08F68; /* Darker gold on hover */
+  #color: #000;
 }
 
 .send-button::after {
