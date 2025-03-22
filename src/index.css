@@ -18,6 +18,14 @@
   --text-secondary: #888888;
   --background-gradient: linear-gradient(135deg, #F8F9FA 0%, #E9ECEF 100%);
   --shadow-elevated: 0 20px 40px rgba(0, 0, 0, 0.08);
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 
