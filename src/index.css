@@ -100,7 +100,7 @@ body {
 }
 
 
-#chat-input {
+.chat-input {
     width: 300px;
     min-height: 30px;
     max-height: 150px;
