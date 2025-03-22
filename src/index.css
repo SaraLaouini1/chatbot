@@ -16,15 +16,7 @@ body {
   min-height: 100vh;
 }
 
-/* App.css */
-.app-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
+
 
 
 
