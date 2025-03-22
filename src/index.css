@@ -99,15 +99,20 @@ body {
   margin: 0 auto;
 }
 
-.chat-input {
-  flex: 1;
-  padding: 1rem 1.25rem;
-  border: 3px solid #d1d5db; /* Thicker border */
-  border-radius: 0.75rem; /* More rounded corners */
-  font-size: 1rem;
-  transition: all 0.2s ease-in-out;
-  margin-right: 0.5rem;
+
+#chat-input {
+    width: 100%;
+    min-height: 40px;
+    max-height: 150px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow-y: auto;
+    resize: none;
+    white-space: pre-wrap;
 }
+
 
 .chat-input:focus {
   border: 3px solid #6366f1; /* Purple border when focused */
