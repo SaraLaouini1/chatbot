@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react'; // Added useRef and useEffect
 import axios from 'axios';
 import { FiSend } from 'react-icons/fi';
-import './Chat.css'; // Create this CSS file
+import './Chat.css';
 
 interface Message {
   text: string;
@@ -20,9 +20,17 @@ export default function Chat() {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  // Vite environment variables
+  const messagesEndRef = useRef<HTMLDivElement>(null); // New ref for scrolling
   const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/process';
+
+  // Auto-scroll to bottom whenever messages or loading state changes
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages, loading]); // Added dependency array
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -84,6 +92,8 @@ export default function Chat() {
             Generating response...
           </div>
         )}
+        {/* Empty div at bottom for scrolling reference */}
+        <div ref={messagesEndRef} />
       </div>
 
       {error && (
