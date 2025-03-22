@@ -101,16 +101,13 @@ body {
 
 
 .chat-input {
-    width: 300px;
-    min-height: 30px;
-    max-height: 150px;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    overflow-y: auto;
-    resize: none;
-    white-space: pre-wrap;
+  flex: 1;
+  padding: 1rem 1.25rem;
+  border: 3px solid #d1d5db; /* Thicker border */
+  border-radius: 0.75rem; /* More rounded corners */
+  font-size: 1rem;
+  transition: all 0.2s ease-in-out;
+  margin-right: 0.5rem;
 }
 
 
