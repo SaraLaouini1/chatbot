@@ -1,13 +1,4 @@
 /* Chat.css - Luxury Design */
-:root {
-  --primary-color: #2A2D3B;
-  --accent-color: #4A90E2;
-  --gold-accent: #C5A47E;
-  --text-primary: #2A2D3B;
-  --text-secondary: #888888;
-  --background-gradient: linear-gradient(135deg, #F8F9FA 0%, #E9ECEF 100%);
-  --shadow-elevated: 0 20px 40px rgba(0, 0, 0, 0.08);
-}
 
 /* Base Container */
 .chat-container {
