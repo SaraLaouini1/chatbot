@@ -114,11 +114,11 @@
 }
 
 .message.user {
-  background: linear-gradient(135deg, var(--accent-color), #3B7BC9);
-  color: white;
+  background: var(--gold-accent); /* Changed to solid gold color */
+  color: #000; /* Changed to black text */
   margin-left: auto;
   border-radius: 24px 24px 4px 24px;
-  box-shadow: 0 8px 24px rgba(74, 144, 226, 0.2);
+  box-shadow: 0 8px 24px rgba(197, 164, 126, 0.2);
 }
 
 .message.bot {
@@ -174,17 +174,15 @@
 }
 
 .chat-input:focus {
-  outline: none;
-  border-color: var(--accent-color);
-  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
-  background: white;
+  border-color: var(--gold-accent);
+  box-shadow: 0 0 0 2px rgba(197, 164, 126, 0.2);
 }
 
 .send-button {
   padding: 1rem 2rem;
   border-radius: 16px;
-  background: linear-gradient(135deg, var(--accent-color), #3B7BC9);
-  color: white;
+  background: linear-gradient(135deg, var(--gold-color), #3B7BC9);
+  color: #000;
   border: none;
   font-weight: 500;
   letter-spacing: 0.04em;
@@ -194,8 +192,8 @@
 }
 
 .send-button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 8px 16px rgba(74, 144, 226, 0.2);
+  background: #B08F68; /* Darker gold on hover */
+  color: #000;
 }
 
 .send-button::after {
@@ -234,12 +232,8 @@
 
 /* Loading Spinner */
 .spinner {
-  width: 24px;
-  height: 24px;
-  border: 3px solid rgba(74, 144, 226, 0.2);
-  border-top-color: var(--accent-color);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
+  border: 3px solid rgba(197, 164, 126, 0.2);
+  border-top-color: var(--gold-accent); /* Gold spinner */
 }
 
 /* Error Message */
