@@ -39,6 +39,10 @@
   color: white;
   position: relative;
   overflow: hidden;
+  display: flex; /* Add this */
+  justify-content: center; /* Add this */
+  align-items: center; /* Add this */
+  text-align: center; /* Add this */
 }
 
 .chat-header::after {
@@ -64,12 +68,13 @@
   letter-spacing: 0.05em;
   position: relative;
   z-index: 1;
-  display: inline-block;
   padding: 0.5rem 1rem;
   background: linear-gradient(45deg, var(--gold-accent), #E8D5B5);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  /* Remove display: inline-block */
+  width: 100%; /* Add this */
 }
 
 /* Messages Container */
