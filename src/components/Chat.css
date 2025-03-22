@@ -181,7 +181,7 @@
 .send-button {
   padding: 1rem 2rem;
   border-radius: 16px;
-  background: linear-gradient(135deg, var(--gold-color), #3B7BC9);
+  background: var(--gold-accent); /* Solid gold color */
   color: #000;
   border: none;
   font-weight: 500;
