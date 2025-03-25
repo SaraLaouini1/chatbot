@@ -1,12 +1,21 @@
+
+
 import { useState, useRef, useEffect } from 'react'; // Added useRef and useEffect
 import axios from 'axios';
 import { FiSend } from 'react-icons/fi';
 import './Chat.css';
+import ResponseDetails from './ResponseDetails';
+
 
 interface Message {
   text: string;
   isUser: boolean;
   id: number;
+  details?: {
+    anonymizedPrompt: string;
+    raw: string;
+    final: string;
+  };
 }
 
 interface AnonymizationMapping {
@@ -40,37 +49,45 @@ export default function Chat() {
     setError(null);
     
     try {
-      setMessages(prev => [...prev, { 
-        text: input, 
-        isUser: true, 
-        id: Date.now() 
-      }]);
+        // Add user message first
+        setMessages(prev => [...prev, { 
+            text: input, 
+            isUser: true, 
+            id: Date.now() 
+        }]);
 
-      const response = await axios.post<{
-        response: string;
-        anonymized_prompt: string;
-        mapping: AnonymizationMapping[];
-      }>(API_URL, { prompt: input });
+        const response = await axios.post<{
+            response: string;
+            llm_raw: string;
+            llm_after_recontext: string;
+            anonymized_prompt: string;
+            mapping: AnonymizationMapping[];
+        }>(API_URL, { prompt: input });
 
-      setMessages(prev => [...prev, {
-        text: response.data.response,
-        isUser: false,
-        id: Date.now() + 1
-      }]);
-      
+        // Then add bot response
+        setMessages(prev => [...prev, {
+            text: response.data.response,
+            isUser: false,
+            id: Date.now() + 1,
+            details: {
+                anonymizedPrompt: response.data.anonymized_prompt,
+                raw: response.data.llm_raw,
+                final: response.data.response
+            }
+        }]);
+        
     } catch (err) {
-      let errorMessage = 'Failed to send message';
-      if (axios.isAxiosError(err)) {
-        errorMessage = err.response?.data?.error || err.message;
-      }
-      setError(errorMessage);
-      console.error(err);
+        let errorMessage = 'Failed to send message';
+        if (axios.isAxiosError(err)) {
+          errorMessage = err.response?.data?.error || err.message;
+        }
+        setError(errorMessage);
+        console.error(err);
     } finally {
-      setLoading(false);
-      setInput('');
+        setLoading(false);
+        setInput('');
     }
-  };
-
+};
   return (
     <div className="chat-container">
       <header className="chat-header">
@@ -84,7 +101,11 @@ export default function Chat() {
             className={`message ${msg.isUser ? 'user' : 'bot'}`}
           >
             {msg.text}
+            {msg.details && (
+              <ResponseDetails details={msg.details} />
+            )}
           </div>
+
         ))}
         {loading && (
           <div className="loading-indicator">
