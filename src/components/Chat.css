@@ -1,4 +1,33 @@
+/* Chat Header Styles */
+.chat-header {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  background: #ffffff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
 
+.title-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.lock-logo {
+  font-size: 2.5rem;
+  color: #C5A47E;
+  filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
+}
+
+.animated-lock {
+  animation: lock-pulse 2s ease-in-out infinite;
+}
+
+@keyframes lock-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
 
 /* Chat.css */
 
