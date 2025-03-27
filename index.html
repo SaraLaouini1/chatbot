@@ -2,17 +2,38 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- Lock emoji as favicon -->
+    <!-- Lock emoji as favicon (works in modern browsers) -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔒</text></svg>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Lock emoji added to page title -->
-    <title>Private Prompt 🔒</title>
+    <title>Private Prompt</title>
     <style>
-      /* Removed lock-logo styles since we're not displaying it on the page */
-      /* Add any other necessary styles below */
+      /* Main lock styling */
+      .lock-logo {
+        font-size: 4rem;
+        text-align: center;
+        color: #C5A47E; /* Your brand color */
+        margin: 2rem 0;
+        filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
+      }
+
+      /* Optional animation */
+      @keyframes lock-pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+      }
+      
+      .animated-lock {
+        animation: lock-pulse 2s ease-in-out infinite;
+      }
     </style>
   </head>
   <body>
+    <!-- Simple lock logo -->
+    <div class="lock-logo animated-lock" aria-label="Secure lock icon">
+      🔒
+    </div>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
