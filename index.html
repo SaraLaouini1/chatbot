@@ -2,50 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTEiIGZpbGw9IiNDNUE0N0UiLz48cGF0aCBkPSJNMTUgOEg5VjZjMC0xLjY1NyAxLjM0My0zIDMtM3MzIDEuMzQzIDMgM3Yyem0tMSAxMHYtM2gtNHYzaDR6bS0yLTdjLS41NSAwLTEgLjQ0OC0xIDF2M2gydi0zYzAtLjU1Mi0uNDUtMS0xLTF6IiBmaWxsPSIjZmZmIi8+PC9zdmc+">
+    <!-- Lock emoji as favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔒</text></svg>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Private Prompt</title>
+    <!-- Lock emoji added to page title -->
+    <title>Private Prompt 🔒</title>
     <style>
-      /* Logo container */
-      .logo-container {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        padding: 1.5rem;
-        color: #C5A47E; /* Your brand color */
-      }
-
-      /* Lock emoji styling */
-      .lock-emoji {
-        font-size: 2.5rem;
-        filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
-      }
-
-      /* Text styling */
-      .logo-text {
-        font-family: 'Arial', sans-serif;
-        font-size: 1.8rem;
-        font-weight: bold;
-        letter-spacing: -0.5px;
-      }
-
-      /* Optional animation */
-      @keyframes lock-bounce {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-5px); }
-      }
-      
-      .animated-lock {
-        animation: lock-bounce 2s ease-in-out infinite;
-      }
+      /* Removed lock-logo styles since we're not displaying it on the page */
+      /* Add any other necessary styles below */
     </style>
   </head>
   <body>
-    <header class="logo-container">
-      <div class="lock-emoji animated-lock" aria-hidden="true">🔒</div>
-      <h1 class="logo-text">Private Prompt</h1>
-    </header>
-
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
