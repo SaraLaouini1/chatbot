@@ -1,16 +1,22 @@
 /* Chat Header Styles */
 .chat-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
   display: flex;
   justify-content: center;
-  padding: 1rem;
+  align-items: center;
+  height: 80px;
   background: #ffffff;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .title-container {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+  max-width: 1200px;
+  width: 100%;
+  padding: 0 2rem;
 }
 
 .lock-logo {
@@ -121,17 +127,7 @@
 }
 
 /* Header */
-.chat-header {
-  padding: 1.5rem 2rem;
-  background: var(--primary-color);
-  color: white;
-  position: relative;
-  overflow: hidden;
-  display: flex; /* Add this */
-  justify-content: center; /* Add this */
-  align-items: center; /* Add this */
-  text-align: center; /* Add this */
-}
+
 
 .chat-header::after {
   content: '';
@@ -175,6 +171,8 @@
   gap: 1.5rem;
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);
+  padding-top: 1rem;
+  height: calc(100vh - 80px - 120px); /* Account for header and input */
 }
 
 /* Message Bubbles */
@@ -232,18 +230,19 @@
 
 /* Input Section */
 .input-container {
-  padding: 1.5rem 2rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   background: white;
-  border-top: 1px solid rgba(42, 45, 59, 0.08);
-  position: relative;
+  padding: 1.5rem 0;
 }
 
 .input-wrapper {
-  display: flex;
-  gap: 1rem;
-  max-width: 1000px;
   margin: 0 auto;
   position: relative;
+  max-width: 1200px;
+  padding: 0 2rem;
 }
 
 .chat-input {
