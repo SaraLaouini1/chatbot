@@ -1,7 +1,6 @@
 
 /* Chat Header Styles */
 .chat-header {
-  position: fixed;
   display: flex;
   justify-content: center;
   padding: 1rem;
@@ -237,7 +236,7 @@
   padding: 1.5rem 2rem;
   background: white;
   border-top: 1px solid rgba(42, 45, 59, 0.08);
-  position: fixed;
+  position: relative;
 }
 
 .input-wrapper {
