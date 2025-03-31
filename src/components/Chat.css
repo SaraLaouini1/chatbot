@@ -237,7 +237,7 @@
   padding: 1.5rem 2rem;
   background: white;
   border-top: 1px solid rgba(42, 45, 59, 0.08);
-  position: relative;
+  position: fixed;
 }
 
 .input-wrapper {
