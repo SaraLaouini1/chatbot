@@ -1,11 +1,9 @@
 
-
-import { useState, useRef, useEffect } from 'react'; // Added useRef and useEffect
+import { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { FiSend } from 'react-icons/fi';
 import './Chat.css';
 import ResponseDetails from './ResponseDetails';
-
 
 interface Message {
   text: string;
@@ -14,7 +12,6 @@ interface Message {
   details?: {
     anonymizedPrompt: string;
     raw: string;
-    final: string;
   };
 }
 
@@ -29,17 +26,47 @@ export default function Chat() {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const messagesEndRef = useRef<HTMLDivElement>(null); // New ref for scrolling
+  const inputRef = useRef<HTMLInputElement>(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
   const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/process';
 
-  // Auto-scroll to bottom whenever messages or loading state changes
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages, loading]); // Added dependency array
+  // Suggested prompts array
+  const suggestedPrompts = [
+    "Draft a fraud alert email for card 4111-1111-1111-1111 belonging to John D. Smith used at IP 192.168.1.100 on 2024-03-15 14:30 in Tokyo for a $2,500 charge.",
+    "Generate a patient discharge summary for Maria González treated on 03/25/2024. Include follow-up instructions directing the patient to https://healthcare.com and provide the pharmacy phone number (555) 123-4567.",
+    "Create a shipping delay notification for Raj Patel indicating a $150 compensation for a delivery in Mumbai scheduled by 2024-04-05",
+    "Generate a security alert for a login attempt from IP 2001:0db8:85a3:0000:0000:8a2e:0370:7334 on 2024-02-28 at 08:15 for user Alice Chen",
+    "Format a PCI compliance report for a transaction using card 5500-0000-0000-0004 processed through https://payments.example.com on 2024-01-15 for an amount of $199.99.",
+    "Create an onboarding checklist for new hire Dr. Emily Wong starting on 2024-06-01. Include instructions to access https://intraportal.company.com.",
+    "Draft an outage notification for a network disruption in São Paulo affecting IPs 10.0.0.1 to 10.0.0.5, scheduled from 2024-05-05 at 09:00 to 11:00. Mention a $50 credit compensation",
+    "Generate a customer survey request for James O'Neill offering a $25 reward via https://surveys.company.com to be completed by 2024-12-31.",
+    "Create a message informing Jack that I've changed my email to emily@gmail.com."
+  ];
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
+
+
+  useEffect(() => {
+    setTimeout(() => {
+      const firstMessage = document.querySelector('.message');
+      firstMessage?.scrollIntoView({ behavior: 'auto' });
+    }, 100);
+  }, []);
+
+  // Scroll handling useEffect
+  useEffect(() => {
+    if (messages.length === 0) return;
+
+    const lastMessage = messages[messages.length - 1];
+    if (!lastMessage.isUser) {
+      const messageElements = document.querySelectorAll('.message');
+      if (messageElements.length > 0) {
+        const lastBotMessage = messageElements[messageElements.length - 1];
+        lastBotMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    } else {
+      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [messages, loading]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,74 +76,102 @@ export default function Chat() {
     setError(null);
     
     try {
-        // Add user message first
-        setMessages(prev => [...prev, { 
-            text: input, 
-            isUser: true, 
-            id: Date.now() 
-        }]);
+      setMessages(prev => [
+        ...prev, 
+        { text: input, isUser: true, id: Date.now() }
+      ]);
 
-        const response = await axios.post<{
-            response: string;
-            llm_raw: string;
-            llm_after_recontext: string;
-            anonymized_prompt: string;
-            mapping: AnonymizationMapping[];
-        }>(API_URL, { prompt: input });
+      const response = await axios.post<{
+        response: string;
+        llm_raw: string;
+        llm_after_recontext: string;
+        anonymized_prompt: string;
+        mapping: AnonymizationMapping[];
+      }>(API_URL, { prompt: input });
 
-        // Then add bot response
-        setMessages(prev => [...prev, {
-            text: response.data.response,
-            isUser: false,
-            id: Date.now() + 1,
-            details: {
-                anonymizedPrompt: response.data.anonymized_prompt,
-                raw: response.data.llm_raw,
-                final: response.data.response
-            }
-        }]);
-        
-    } catch (err) {
-        let errorMessage = 'Failed to send message';
-        if (axios.isAxiosError(err)) {
-          errorMessage = err.response?.data?.error || err.message;
+      setMessages(prev => [
+        ...prev, 
+        {
+          text: response.data.response,
+          isUser: false,
+          id: Date.now() + 1,
+          details: {
+            anonymizedPrompt: response.data.anonymized_prompt,
+            raw: response.data.llm_raw,
+          }
         }
-        setError(errorMessage);
-        console.error(err);
+      ]);
+    } catch (err) {
+      let errorMessage = 'Failed to send message';
+      if (axios.isAxiosError(err)) {
+        errorMessage = err.response?.data?.error || err.message;
+      }
+      setError(errorMessage);
+      console.error(err);
     } finally {
-        setLoading(false);
-        setInput('');
+      setLoading(false);
+      setInput('');
     }
-};
+  };
+
   return (
     <div className="chat-container">
       <header className="chat-header">
-        <div className="title-container">
-          <h1 className="chat-title">Private Prompt</h1>
-          <span className="lock-logo animated-lock" aria-hidden="true">🔒</span>
+        <div className="header-content">
+          <div className="cyber-border"></div>
+          <div className="brand-container">
+            <span className="decorative-left">
+              Zyn0Q9🗝️kbMz!7rfS0Gv🗝️#K!nrynLx82?f🛡️S09k%LwNj7Dbc🛡️T&AV@0qZ94e
+            </span>
+            <h1 className="brand-title">
+              <span className="lock-icon">🔒</span>
+              <span className="gradient-text">Private Prompt</span>
+              <span className="lock-icon">🔒</span>
+            </h1>
+            <span className="decorative-right">
+              JaS9Lg0m4T1G🔒HxahUbkNZ94pRnA🔒vzke?JG5rG$a~d🔑#fHS9LQhUpi🔑4T1GpRnxf
+            </span>
+          </div>
+          <div className="cyber-border"></div>
         </div>
       </header>
 
       <div className="messages-container">
-        {messages.map((msg) => (
-          <div
-            key={msg.id}
-            className={`message ${msg.isUser ? 'user' : 'bot'}`}
-          >
-            {msg.text}
-            {msg.details && (
-              <ResponseDetails details={msg.details} />
-            )}
+        {messages.length === 0 && !loading && (
+          <div className="suggestions-container">
+            <h3>Try one of these prompts or write your own:</h3>
+            <div className="suggestions-list">
+              {suggestedPrompts.map((prompt, index) => (
+                <button
+                  key={index}
+                  className="suggestion-button"
+                  onClick={() => {
+                    setInput(prompt);
+                    inputRef.current?.focus();
+                  }}
+                >
+                  {prompt}
+                </button>
+              ))}
+            </div>
           </div>
+        )}
 
+        {messages.map((msg) => (
+          <div key={msg.id} className={`message ${msg.isUser ? 'user' : 'bot'}`}>
+            {msg.text}
+            {msg.details && <ResponseDetails details={msg.details} />}
+          </div>
         ))}
+
         {loading && (
           <div className="loading-indicator">
             <div className="spinner"></div>
             Generating response...
           </div>
         )}
-        {/* Empty div at bottom for scrolling reference */}
+
+        {/* Scroll anchor placed at the bottom of messages container */}
         <div ref={messagesEndRef} />
       </div>
 
@@ -143,6 +198,7 @@ export default function Chat() {
       <div className="input-container">
         <form onSubmit={handleSubmit} className="input-wrapper">
           <input
+            ref={inputRef}
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
@@ -150,12 +206,7 @@ export default function Chat() {
             disabled={loading}
             className="chat-input"
           />
-
-          <button
-            type="submit"
-            disabled={loading}
-            className="send-button"
-          >
+          <button type="submit" disabled={loading} className="send-button">
             <FiSend className="send-icon" />
             Send
           </button>
