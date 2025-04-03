@@ -139,6 +139,9 @@ export default function Chat() {
       <div className="messages-container">
         {messages.length === 0 && !loading && (
           <div className="suggestions-container">
+            <div className="intro-text">
+              Take control of your privacy and use Private-Prompt.com to anonymize your AI messages!
+            </div>
             <h3>Try one of these prompts or write your own:</h3>
             <div className="suggestions-list">
               {suggestedPrompts.map((prompt, index) => (
