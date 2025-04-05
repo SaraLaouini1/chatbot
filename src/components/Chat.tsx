@@ -4,6 +4,8 @@ import axios from 'axios';
 import { FiSend } from 'react-icons/fi';
 import './Chat.css';
 import ResponseDetails from './ResponseDetails';
+import { useNavigate } from 'react-router-dom';
+
 
 interface Message {
   text: string;
@@ -21,7 +23,11 @@ interface AnonymizationMapping {
   anonymized: string;
 }
 
-export default function Chat() {
+interface ChatProps {
+  setIsAuthenticated: (value: boolean) => void;
+}
+
+export default function Chat({ setIsAuthenticated }: ChatProps) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -29,6 +35,15 @@ export default function Chat() {
   const inputRef = useRef<HTMLInputElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/process';
+
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('authToken');
+    setIsAuthenticated(false);
+    navigate('/login');  // Use React Router navigation
+  };
 
   // Suggested prompts array
   const suggestedPrompts = [
@@ -133,6 +148,19 @@ export default function Chat() {
             </span>
           </div>
           <div className="cyber-border"></div>
+
+          <div className="header-right">
+            <button 
+              onClick={handleLogout} 
+              className="logout-button"
+              aria-label="Logout"
+            >
+              <span className="logout-text">Logout</span>
+              <span className="logout-icon">🚪</span>
+            </button>
+          </div>
+
+          
         </div>
       </header>
 
@@ -162,8 +190,9 @@ export default function Chat() {
 
         {messages.map((msg) => (
           <div key={msg.id} className={`message ${msg.isUser ? 'user' : 'bot'}`}>
-            {msg.text}
             {msg.details && <ResponseDetails details={msg.details} />}
+            {msg.text}
+            
           </div>
         ))}
 
