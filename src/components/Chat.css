@@ -1,3 +1,125 @@
+
+/* Header Right Section */
+.header-right {
+  position: absolute;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.user-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  backdrop-filter: blur(4px);
+}
+
+.user-icon {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* Enhanced Logout Button */
+.logout-button {
+  background: none;
+  border: 1px solid rgba(197, 164, 126, 0.3);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--gold-accent);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.logout-button:hover {
+  background: rgba(197, 164, 126, 0.1);
+  border-color: var(--gold-accent);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(197, 164, 126, 0.15);
+}
+
+.logout-button:active {
+  transform: translateY(0);
+}
+
+.logout-text {
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.logout-icon {
+  font-size: 1.1em;
+  transition: transform 0.3s ease;
+}
+
+.logout-button:hover .logout-icon {
+  transform: translateX(2px);
+}
+
+/* Glow Effect */
+.logout-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 25%,
+    rgba(197, 164, 126, 0.1) 50%,
+    transparent 75%
+  );
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@media (max-width: 768px) {
+  .header-right {
+    right: 1rem;
+    gap: 1rem;
+  }
+  
+  .user-indicator span:not(.user-icon) {
+    display: none;
+  }
+  
+  .logout-button {
+    padding: 0.6rem;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+  }
+  
+  .logout-text {
+    display: none;
+  }
+  
+  .logout-icon {
+    font-size: 1.2em;
+    margin-right: -2px;
+  }
+}
+
+
+/* In src/components/Chat.css */
 /* Introductory text styling */
 .intro-text {
   text-align: center;
@@ -52,6 +174,7 @@
     font-size: 1rem;
   }
 }
+
 
 /* Prompt Suggestions */
 .suggestions-container {
@@ -260,10 +383,16 @@
 }
 
 /* Response Details Styles */
-.response-details {
+/*.response-details {
   margin-top: 1rem;
   border-top: 1px solid rgba(42, 45, 59, 0.1);
   padding-top: 1rem;
+}*/
+
+.response-details {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(42, 45, 59, 0.05);
+  padding-bottom: 1rem;
 }
 
 .toggle-details {
