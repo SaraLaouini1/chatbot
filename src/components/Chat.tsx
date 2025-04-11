@@ -47,13 +47,13 @@ export default function Chat({ setIsAuthenticated }: ChatProps) {
 
   // Suggested prompts array
   const suggestedPrompts = [
-    "Draft a fraud alert email for card 4111-1111-1111-1111 belonging to John D. Smith used at IP 192.168.1.100 on 2024-03-15 14:30 in Tokyo for a $2,500 charge.",
+    "Draft a fraud alert email for card 4111-1111-1111-1111 belonging to John D. Smith used at IP 192.168.1.100 on 2024-03-15 in Tokyo for a $2,500 charge.",
     "Generate a patient discharge summary for Maria González treated on 03/25/2024. Include follow-up instructions directing the patient to https://healthcare.com and provide the pharmacy phone number (555) 123-4567.",
     "Create a shipping delay notification for Raj Patel indicating a $150 compensation for a delivery in Mumbai scheduled by 2024-04-05",
-    "Generate a security alert for a login attempt from IP 2001:0db8:85a3:0000:0000:8a2e:0370:7334 on 2024-02-28 at 08:15 for user Alice Chen",
+    "Generate a security alert for a login attempt from IP 2001:0db8:85a3:0000:0000:8a2e:0370:7334 on 2024-02-28 for user Alice Chen",
     "Format a PCI compliance report for a transaction using card 5500-0000-0000-0004 processed through https://payments.example.com on 2024-01-15 for an amount of $199.99.",
     "Create an onboarding checklist for new hire Dr. Emily Wong starting on 2024-06-01. Include instructions to access https://intraportal.company.com.",
-    "Draft an outage notification for a network disruption in São Paulo affecting IPs 10.0.0.1 to 10.0.0.5, scheduled from 2024-05-05 at 09:00 to 11:00. Mention a $50 credit compensation",
+    "Draft an outage notification for a network disruption in São Paulo affecting IPs 10.0.0.1 to 10.0.0.5, scheduled 2024-05-05. Mention a $50 credit compensation",
     "Generate a customer survey request for James O'Neill offering a $25 reward via https://surveys.company.com to be completed by 2024-12-31.",
     "Create a message informing Jack that I've changed my email to emily@gmail.com."
   ];
